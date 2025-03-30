@@ -5,7 +5,6 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
 import data_analytics as da
-import machine_learning as ml
 
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
@@ -120,7 +119,7 @@ elif st.session_state.current_page == 'data_analysis':
         st .error("Data analysis module could not be imported.")
 elif st.session_state.current_page == 'machine_learning':
     try:
-        
+        import machine_learning as ml
         ml.show()
     except ImportError:
         st.error("Machine learning module could not be imported.")
