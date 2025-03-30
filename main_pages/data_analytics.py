@@ -9,13 +9,13 @@ def main():
     categories = {
         "Category 1": {
             "name": "E-Commerce Sales Data Analysis",
-            "image": "https://via.placeholder.com/150.png?text=Category+1",
-            "path": ""
+            "image": "/img/e_ommerce.png",
+            "path": "/data_analytics_templates/data_analytics.py"
         },
         "Category 2": {
             "name": "Food Price Analysis",
-            "image": "https://via.placeholder.com/150.png?text=Category+2",
-            "path": ""
+            "image": "/img/food_prices.png",
+            "path": "/data_analytics_templates/food_price.py"
         },
         "Category 3": {
             "name": "Other Datasets",
