@@ -4,7 +4,6 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
-import data_analytics as da
 
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
@@ -113,7 +112,7 @@ if st.session_state.current_page == 'home':
     show_home()
 elif st.session_state.current_page == 'data_analysis':
     try:
-        
+        import data_analytics as da
         da.show()
     except ImportError:
         st .error("Data analysis module could not be imported.")
