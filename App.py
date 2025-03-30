@@ -113,4 +113,7 @@ elif st.session_state.current_page == 'machine_learning':
     # Import and show machine learning page
     from main_pages import machine_learning as ml
     ml.show()
-# Add similar conditions for other pages
+# Add similar conditions for oter pages
+# Run the main function
+if __name__ == "__main__":
+    show_home()
