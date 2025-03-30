@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Main function to run the app
-def main():
+def data_analytics():
     st.set_page_config(page_title="Dataset Categories", layout="wide")
     st.title("📊 Dataset Categories")
 
@@ -39,4 +39,4 @@ def main():
                 navigate_to("path")
 
 if __name__ == "__main__":
-    main()
+    data_analytics()
