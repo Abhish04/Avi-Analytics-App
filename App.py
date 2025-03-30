@@ -1,5 +1,9 @@
 import streamlit as st
 
+# Initialize session state for page navigation
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = 'home'
+
 # Set page config
 st.set_page_config(
     page_title="My App",
@@ -75,7 +79,7 @@ def show_home():
         if st.button("Go to Forecasting", key="forecasting"):
             navigate_to("forecasting")
 
-    # Add more categories as needed
+    # Additional Tools
     st.markdown("---")
     st.markdown("### Additional Tools")
     
@@ -92,28 +96,44 @@ def show_home():
     with col5:
         st.markdown('<div class="category-block">' +
                     '<div class="category-title">📚 Documentation</div>' +
-                    '<div class="category-description">User guides and API references</div>' +
+                    '<div class="category-description">User  guides and API references</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Documentation", key="documentation"):
             navigate_to("documentation")
 
-# Initialize session state for page navigation
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = 'home'
-
 # Page routing
 if st.session_state.current_page == 'home':
     show_home()
 elif st.session_state.current_page == 'data_analysis':
-    # Import and show data analysis page
-    from main_pages import data_analytics as da
-    da.show()
+    try:
+        from main_pages import data_analytics as da
+        da.show()
+    except ImportError:
+        st .error("Data analysis module could not be imported.")
 elif st.session_state.current_page == 'machine_learning':
-    # Import and show machine learning page
-    from main_pages import machine_learning as ml
-    ml.show()
-# Add similar conditions for oter pages
-# Run the main function
-if __name__ == "__main__":
-    show_home()
+    try:
+        from main_pages import machine_learning as ml
+        ml.show()
+    except ImportError:
+        st.error("Machine learning module could not be imported.")
+elif st.session_state.current_page == 'forecasting':
+    try:
+        from main_pages import forecasting as fc
+        fc.show()
+    except ImportError:
+        st.error("Forecasting module could not be imported.")
+elif st.session_state.current_page == 'settings':
+    try:
+        from main_pages import settings as stg
+        stg.show()
+    except ImportError:
+        st.error("Settings module could not be imported.")
+elif st.session_state.current_page == 'documentation':
+    try:
+        from main_pages import documentation as doc
+        doc.show()
+    except ImportError:
+        st.error("Documentation module could not be imported.")
+else:
+    st.error("Page not found.")
