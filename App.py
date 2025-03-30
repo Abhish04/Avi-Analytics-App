@@ -3,7 +3,7 @@ import streamlit as st
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(data_analytics.py), "main_pages")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
 
 
 
