@@ -107,10 +107,10 @@ if st.session_state.current_page == 'home':
     show_home()
 elif st.session_state.current_page == 'data_analysis':
     # Import and show data analysis page
-    from pages import data_analysis
-    data_analysis.show()
+    from main_pages import data_analytics.py as da
+    da.show()
 elif st.session_state.current_page == 'machine_learning':
     # Import and show machine learning page
-    from pages import machine_learning
-    machine_learning.show()
+    from main_pages import machine_learning.py as ml
+    ml.show()
 # Add similar conditions for other pages
