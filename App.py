@@ -1,5 +1,12 @@
 import streamlit as st
 
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(data_analytics.py), "main_pages")))
+
+
+
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
     st.session_state.current_page = 'home'
