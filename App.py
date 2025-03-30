@@ -112,13 +112,13 @@ if st.session_state.current_page == 'home':
     show_home()
 elif st.session_state.current_page == 'data_analysis':
     try:
-        import data_analytics as da
+        from main_pages import data_analytics as da
         da.show()
     except ImportError:
         st .error("Data analysis module could not be imported.")
 elif st.session_state.current_page == 'machine_learning':
     try:
-        import machine_learning as ml
+        from main_pages import machine_learning as ml
         ml.show()
     except ImportError:
         st.error("Machine learning module could not be imported.")
