@@ -90,5 +90,7 @@ def home():
                     unsafe_allow_html=True)
         st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
 
-if __name__ == "__main__":
-    home()
+
+
+#if __name__ == "__main__":
+ #   home()
