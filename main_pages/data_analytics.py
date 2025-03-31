@@ -8,7 +8,10 @@ def navigate_to(page):
 
 # Main function to run the app
 def show():
-    from data_analytics_templates import *
+    from data_analytics_templates import e_commerce
+    from data_analytics_templates import food_prices
+    
+    
     #st.set_page_config(page_title="Dataset Categories", layout="wide")
     st.title("📊 Dataset Categories")
 
