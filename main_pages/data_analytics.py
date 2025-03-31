@@ -40,3 +40,6 @@ def show():
 
 #if __name__ == "__main__":
 #    data_analytics()
+
+    if st.button("Back to Main Page"):
+        st.session_state.current_page = 'home'
