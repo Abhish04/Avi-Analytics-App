@@ -1,9 +1,9 @@
 import streamlit as st
+import sys
+import os
 
-
-# Initialize session state for page navigation
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = 'home'
+# Add the main_pages directory to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), "main_pages"))
 
 # Set page config
 st.set_page_config(
@@ -38,11 +38,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-
-# Page navigation function
-def navigate_to(page):
-    st.session_state.current_page = page
-
 # Main page content
 def show_home():
     st.title("Welcome to My App! 🌟")
@@ -61,7 +56,8 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Data Analysis", key="data_analysis"):
-            navigate_to("data_analytics")
+            # Directly run the data_analytics.py file
+            st.experimental_rerun()  # This will refresh the app and run the new page
 
     with col2:
         st.markdown('<div class="category-block">' +
@@ -70,7 +66,7 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Machine Learning", key="machine_learning"):
-            navigate_to("machine_learning")
+            st.experimental_rerun()  # Similar for machine learning
 
     with col3:
         st.markdown('<div class="category-block">' +
@@ -79,7 +75,7 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Forecasting", key="forecasting"):
-            navigate_to("forecasting")
+            st.experimental_rerun()  # Similar for forecasting
 
     # Additional Tools
     st.markdown("---")
@@ -93,7 +89,7 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Settings", key="settings"):
-            navigate_to("settings")
+            st.experimental_rerun()  # Similar for settings
 
     with col5:
         st.markdown('<div class="category-block">' +
@@ -102,31 +98,25 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Documentation", key="documentation"):
-            navigate_to("documentation")
+            st.experimental_rerun()  # Similar for documentation
 
 # Page routing
 if st.session_state.current_page == 'home':
     show_home()
     
 elif st.session_state.current_page == 'data_analytics':
-    # Ensure that the modules are available
     try:
         from main_pages import data_analytics as da
         da.show()
     except ImportError:
         st.error("Data analysis module could not be imported.")
-        
-    
-
 
 elif st.session_state.current_page == 'machine_learning':
     try:
-        import main_pages.machine_learning
-        machine_learning.show()
+        from main_pages import machine_learning as ml
+        ml.show()
     except ImportError:
         st.error("Machine learning module could not be imported.")
-    
-
 
 elif st.session_state.current_page == 'forecasting':
     try:
@@ -135,7 +125,6 @@ elif st.session_state.current_page == 'forecasting':
     except ImportError:
         st.error("Forecasting module could not be imported.")
 
-
 elif st.session_state.current_page == 'settings':
     try:
         from main_pages import settings as stg
@@ -143,14 +132,12 @@ elif st.session_state.current_page == 'settings':
     except ImportError:
         st.error("Settings module could not be imported.")
 
-
 elif st.session_state.current_page == 'documentation':
     try:
         from main_pages import documentation as doc
         doc.show()
     except ImportError:
         st.error("Documentation module could not be imported.")
-
 
 else:
     st.error("Page not found.")
