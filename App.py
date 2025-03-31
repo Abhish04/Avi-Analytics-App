@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 # Set page config
 st.set_page_config(
     page_title="My App",
@@ -51,7 +50,9 @@ def home():
                     '<div class="category-description">Explore data visualization and statistical analysis tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
+        if st.button("Go to Data Analysis"):
+            st.experimental_set_query_params(page="data_analytics")  # Set query parameter for data analytics
+            st.experimental_rerun()  # Refresh the app
 
     with col2:
         st.markdown('<div class="category-block">' +
@@ -59,7 +60,9 @@ def home():
                     '<div class="category-description">Train and evaluate machine learning models</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        st.page_link("main_pages/machine_learning.py", label="Machine Learning", icon="🏠")
+        if st.button("Go to Machine Learning"):
+            st.experimental_set_query_params(page="machine_learning")
+            st.experimental_rerun()
 
     with col3:
         st.markdown('<div class="category-block">' +
@@ -67,7 +70,9 @@ def home():
                     '<div class="category-description">Time series analysis and prediction tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
+        if st.button("Go to Forecasting"):
+            st.experimental_set_query_params(page="forecasting")
+            st.experimental_rerun()
 
     # Additional Tools
     st.markdown("---")
@@ -80,7 +85,9 @@ def home():
                     '<div class="category-description">Configure application settings</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
+        if st.button("Go to Settings"):
+            st.experimental_set_query_params(page="settings")
+            st.experimental_rerun()
 
     with col5:
         st.markdown('<div class="category-block">' +
@@ -88,9 +95,35 @@ def home():
                     '<div class="category-description">User  guides and API references</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
+        if st.button("Go to Documentation"):
+            st.experimental_set_query_params(page="documentation")
+            st.experimental_rerun()
 
+# Page routing based on query parameters
+query_params = st.experimental_get_query_params()
+current_page = query_params.get("page", ["home"])[0]  # Default to 'home' if no page is specified
 
-
-if __name__ == "__main__":
+if current_page == 'home':
     home()
+elif current_page == 'data_analytics':
+    try:
+        from main_pages import data_analytics as da
+        da.show()
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
+elif current_page == 'machine_learning':
+    try:
+        from main_pages import machine_learning as ml
+        ml.show()
+ elif current_page == 'forecasting':
+    try:
+        from main_pages import forecasting as fr
+        fr.show()
+elif current_page == 'settings':
+    try:
+        from main_pages import settings as st
+        st.show()
+elif current_page == 'documentation':
+    try:
+        from main_pages import documentation as doc
+        doc.show()
