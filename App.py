@@ -115,7 +115,7 @@ elif st.session_state.current_page == 'data_analysis':
     data_analytics.show()
 elif st.session_state.current_page == 'machine_learning':
     try:
-        from main_pages import machine_learning
+        import main_pages.machine_learning
         machine_learning.show()
     except ImportError:
         st.error("Machine learning module could not be imported.")
