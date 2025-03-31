@@ -113,7 +113,7 @@ elif st.session_state.current_page == 'data_analytics':
         from main_pages import data_analytics as da
         da.show()
     except ImportError:
-        st.error("Data analysis module could not be imported.")
+        st.error("Data analysis module could not be imported. aaaaaaaaaaaaaaaaaaaaaaaa")
         
     
 
