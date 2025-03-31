@@ -34,7 +34,7 @@ def show():
 
     for i, (category, details) in enumerate(categories.items()):
         with cols[i % 2]:  # Alternate between columns
-            st.image(details["image"], caption=category, use_column_width=True)
+            st.image(details["image"], caption=category)
             if st.button(f"Explore {details['name']}"):
                 navigate_to("path")
 
