@@ -1,9 +1,9 @@
 import streamlit as st
 
-import sys
-import os
+#import sys
+#import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
+#sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
 
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
@@ -118,8 +118,8 @@ elif st.session_state.current_page == 'data_analysis':
         st .error("Data analysis module could not be imported.")
 elif st.session_state.current_page == 'machine_learning':
     try:
-        from main_pages import machine_learning as ml
-        ml.show()
+        from main_pages import machine_learning
+        machine_learning.show()
     except ImportError:
         st.error("Machine learning module could not be imported.")
 elif st.session_state.current_page == 'forecasting':
