@@ -1,16 +1,5 @@
 import streamlit as st
 
-# Ensure that the modules are available
-try:
-    import main_pages.data_analytics
-except ImportError:
-    st.error("Data analysis module could not be imported.")
-
-try:
-    import main_pages.machine_learning
-except ImportError:
-    st.error("Machine learning module could not be imported.")
-
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
     st.session_state.current_page = 'home'
@@ -47,6 +36,20 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+
+
+# Ensure that the modules are available
+try:
+    import main_pages.data_analytics
+except ImportError:
+    st.error("Data analysis module could not be imported.")
+
+try:
+    import main_pages.machine_learning
+except ImportError:
+    st.error("Machine learning module could not be imported.")
+
+
 
 # Page navigation function
 def navigate_to(page):
