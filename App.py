@@ -115,15 +115,23 @@ elif current_page == 'machine_learning':
     try:
         from main_pages import machine_learning as ml
         ml.show()
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
  elif current_page == 'forecasting':
     try:
         from main_pages import forecasting as fr
         fr.show()
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
 elif current_page == 'settings':
     try:
         from main_pages import settings as st
         st.show()
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
 elif current_page == 'documentation':
     try:
         from main_pages import documentation as doc
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
         doc.show()
