@@ -1,13 +1,6 @@
 import streamlit as st
 
 
-import sys
-import os
-
-# Add the main_pages directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), "main_pages"))
-
-
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
     st.session_state.current_page = 'home'
