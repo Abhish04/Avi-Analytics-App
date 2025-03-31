@@ -110,7 +110,7 @@ if st.session_state.current_page == 'home':
 elif st.session_state.current_page == 'data_analytics':
     # Ensure that the modules are available
     try:
-        import main_pages.data_analytics as da
+        from main_pages import data_analytics as da
         da.show()
     except ImportError:
         st.error("Data analysis module could not be imported.")
