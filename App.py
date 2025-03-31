@@ -38,19 +38,6 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-# Ensure that the modules are available
-try:
-    import main_pages.data_analytics
-except ImportError:
-    st.error("Data analysis module could not be imported.")
-
-try:
-    import main_pages.machine_learning
-except ImportError:
-    st.error("Machine learning module could not be imported.")
-
-
-
 # Page navigation function
 def navigate_to(page):
     st.session_state.current_page = page
@@ -121,11 +108,23 @@ if st.session_state.current_page == 'home':
     show_home()
     
 elif st.session_state.current_page == 'data_analytics':
-    data_analytics.show()
+    # Ensure that the modules are available
+    try:
+        import main_pages.data_analytics
+        data_analytics.show()
+    except ImportError:
+        st.error("Data analysis module could not be imported.")
+        
+    
 
 
 elif st.session_state.current_page == 'machine_learning':
-    machine_learning.show()
+    try:
+        import main_pages.machine_learning
+        machine_learning.show()
+    except ImportError:
+        st.error("Machine learning module could not be imported.")
+    
 
 
 elif st.session_state.current_page == 'forecasting':
