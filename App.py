@@ -65,7 +65,7 @@ def show_home():
                     '</div>', 
                     unsafe_allow_html=True)
         if st.button("Go to Data Analysis", key="data_analysis"):
-            navigate_to("data_analysis")
+            navigate_to("data_analytics")
 
     with col2:
         st.markdown('<div class="category-block">' +
