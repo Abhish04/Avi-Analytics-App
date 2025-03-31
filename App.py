@@ -2,9 +2,14 @@ import streamlit as st
 
 # Ensure that the modules are available
 try:
-    from main_pages import data_analytics
+    import main_pages.data_analytics
 except ImportError:
     st.error("Data analysis module could not be imported.")
+
+try:
+    import main_pages.machine_learning
+except ImportError:
+    st.error("Machine learning module could not be imported.")
 
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
@@ -111,31 +116,38 @@ def show_home():
 # Page routing
 if st.session_state.current_page == 'home':
     show_home()
-elif st.session_state.current_page == 'data_analysis':
+    
+elif st.session_state.current_page == 'data_analytics':
     data_analytics.show()
+
+
 elif st.session_state.current_page == 'machine_learning':
-    try:
-        import main_pages.machine_learning
-        machine_learning.show()
-    except ImportError:
-        st.error("Machine learning module could not be imported.")
+    machine_learning.show()
+
+
 elif st.session_state.current_page == 'forecasting':
     try:
         from main_pages import forecasting as fc
         fc.show()
     except ImportError:
         st.error("Forecasting module could not be imported.")
+
+
 elif st.session_state.current_page == 'settings':
     try:
         from main_pages import settings as stg
         stg.show()
     except ImportError:
         st.error("Settings module could not be imported.")
+
+
 elif st.session_state.current_page == 'documentation':
     try:
         from main_pages import documentation as doc
         doc.show()
     except ImportError:
         st.error("Documentation module could not be imported.")
+
+
 else:
     st.error("Page not found.")
