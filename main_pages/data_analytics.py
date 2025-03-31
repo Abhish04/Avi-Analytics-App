@@ -2,7 +2,7 @@ import streamlit as st
 
 # Main function to run the app
 def show():
-    st.set_page_config(page_title="Dataset Categories", layout="wide")
+    #st.set_page_config(page_title="Dataset Categories", layout="wide")
     st.title("📊 Dataset Categories")
 
     # Define categories of datasets with images
