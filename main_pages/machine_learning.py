@@ -178,5 +178,4 @@ def show():
             st.error(f"An error occurred: {e}")
 
 
-    if st.button("Back to Main Page"):
-        st.session_state.current_page = 'home'
+
