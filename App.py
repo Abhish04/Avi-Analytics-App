@@ -1,9 +1,5 @@
 import streamlit as st
-import sys
-import os
 
-# Add the main_pages directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), "main_pages"))
 
 # Set page config
 st.set_page_config(
@@ -39,7 +35,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Main page content
-def show_home():
+def home():
     st.title("Welcome to My App! 🌟")
     st.markdown("""
     ### Explore different sections using the categories below
@@ -55,9 +51,7 @@ def show_home():
                     '<div class="category-description">Explore data visualization and statistical analysis tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Data Analysis", key="data_analysis"):
-            # Directly run the data_analytics.py file
-            st.experimental_rerun()  # This will refresh the app and run the new page
+        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
 
     with col2:
         st.markdown('<div class="category-block">' +
@@ -65,8 +59,7 @@ def show_home():
                     '<div class="category-description">Train and evaluate machine learning models</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Machine Learning", key="machine_learning"):
-            st.experimental_rerun()  # Similar for machine learning
+        st.page_link("main_pages/machine_learning.py", label="Machine Learning", icon="🏠")
 
     with col3:
         st.markdown('<div class="category-block">' +
@@ -74,8 +67,7 @@ def show_home():
                     '<div class="category-description">Time series analysis and prediction tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Forecasting", key="forecasting"):
-            st.experimental_rerun()  # Similar for forecasting
+        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
 
     # Additional Tools
     st.markdown("---")
@@ -88,8 +80,7 @@ def show_home():
                     '<div class="category-description">Configure application settings</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Settings", key="settings"):
-            st.experimental_rerun()  # Similar for settings
+        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
 
     with col5:
         st.markdown('<div class="category-block">' +
@@ -97,47 +88,7 @@ def show_home():
                     '<div class="category-description">User  guides and API references</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Documentation", key="documentation"):
-            st.experimental_rerun()  # Similar for documentation
+        st.page_link("main_pages/data_analytics.py", label="Go to Data Analysis", icon="🏠")
 
-# Page routing
-if st.session_state.current_page == 'home':
-    show_home()
-    
-elif st.session_state.current_page == 'data_analytics':
-    try:
-        from main_pages import data_analytics as da
-        da.show()
-    except ImportError:
-        st.error("Data analysis module could not be imported.")
-
-elif st.session_state.current_page == 'machine_learning':
-    try:
-        from main_pages import machine_learning as ml
-        ml.show()
-    except ImportError:
-        st.error("Machine learning module could not be imported.")
-
-elif st.session_state.current_page == 'forecasting':
-    try:
-        from main_pages import forecasting as fc
-        fc.show()
-    except ImportError:
-        st.error("Forecasting module could not be imported.")
-
-elif st.session_state.current_page == 'settings':
-    try:
-        from main_pages import settings as stg
-        stg.show()
-    except ImportError:
-        st.error("Settings module could not be imported.")
-
-elif st.session_state.current_page == 'documentation':
-    try:
-        from main_pages import documentation as doc
-        doc.show()
-    except ImportError:
-        st.error("Documentation module could not be imported.")
-
-else:
-    st.error("Page not found.")
+if __name__ == "__main__":
+    home()
