@@ -117,12 +117,12 @@ elif current_page == 'machine_learning':
         ml.show()
     except ImportError:
         st.error("Data analysis module could not be imported.")
- elif current_page == 'forecasting':
-    try:
-        from main_pages import forecasting as fr
-        fr.show()
-    except ImportError:
-        st.error("Data analysis module could not be imported.")
+ #elif current_page == 'forecasting':
+ #   try:
+ #       from main_pages import forecasting as fr
+ #       fr.show()
+ #   except ImportError:
+ #       st.error("Data analysis module could not be imported.")
 elif current_page == 'settings':
     try:
         from main_pages import settings as st
