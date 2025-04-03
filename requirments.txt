@@ -5,3 +5,5 @@ openpyxl
 NumPy
 Pandas
 sklearn
+xgboost
+lightgbm
