@@ -1,5 +1,14 @@
 import streamlit as st
 
+#import sys
+#import os
+
+#sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
+
+# Initialize session state for page navigation
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = 'home'
+
 # Set page config
 st.set_page_config(
     page_title="My App",
@@ -33,8 +42,12 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# Page navigation function
+def navigate_to(page):
+    st.session_state.current_page = page
+
 # Main page content
-def home():
+def show_home():
     st.title("Welcome to My App! 🌟")
     st.markdown("""
     ### Explore different sections using the categories below
@@ -50,9 +63,8 @@ def home():
                     '<div class="category-description">Explore data visualization and statistical analysis tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Data Analysis"):
-            st.experimental_set_query_params(page="data_analytics")  # Set query parameter for data analytics
-            st.experimental_rerun()  # Refresh the app
+        if st.button("Go to Data Analysis", key="data_analysis"):
+            navigate_to("data_analysis")
 
     with col2:
         st.markdown('<div class="category-block">' +
@@ -60,9 +72,8 @@ def home():
                     '<div class="category-description">Train and evaluate machine learning models</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Machine Learning"):
-            st.experimental_set_query_params(page="machine_learning")
-            st.experimental_rerun()
+        if st.button("Go to Machine Learning", key="machine_learning"):
+            navigate_to("machine_learning")
 
     with col3:
         st.markdown('<div class="category-block">' +
@@ -70,9 +81,8 @@ def home():
                     '<div class="category-description">Time series analysis and prediction tools</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Forecasting"):
-            st.experimental_set_query_params(page="forecasting")
-            st.experimental_rerun()
+        if st.button("Go to Forecasting", key="forecasting"):
+            navigate_to("forecasting")
 
     # Additional Tools
     st.markdown("---")
@@ -85,9 +95,8 @@ def home():
                     '<div class="category-description">Configure application settings</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Settings"):
-            st.experimental_set_query_params(page="settings")
-            st.experimental_rerun()
+        if st.button("Go to Settings", key="settings"):
+            navigate_to("settings")
 
     with col5:
         st.markdown('<div class="category-block">' +
@@ -95,43 +104,41 @@ def home():
                     '<div class="category-description">User  guides and API references</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Documentation"):
-            st.experimental_set_query_params(page="documentation")
-            st.experimental_rerun()
+        if st.button("Go to Documentation", key="documentation"):
+            navigate_to("documentation")
 
-# Page routing based on query parameters
-query_params = st.experimental_get_query_params()
-current_page = query_params.get("page", ["home"])[0]  # Default to 'home' if no page is specified
-
-if current_page == 'home':
-    home()
-elif current_page == 'data_analytics':
+# Page routing
+if st.session_state.current_page == 'home':
+    show_home()
+elif st.session_state.current_page == 'data_analysis':
     try:
-        from main_pages import data_analytics as da
-        da.show()
+        from main_pages import data_analytics
+        data_analytics.show()
     except ImportError:
-        st.error("Data analysis module could not be imported.")
-elif current_page == 'machine_learning':
+        st .error("Data analysis module could not be imported.")
+elif st.session_state.current_page == 'machine_learning':
     try:
-        from main_pages import machine_learning as ml
-        ml.show()
+        from main_pages import machine_learning
+        machine_learning.show()
     except ImportError:
-        st.error("Data analysis module could not be imported.")
- elif current_page == 'forecasting':
-      try:
-            from main_pages import forecasting as fr
-            fr.show()
-      except ImportError:
-            st.error("Data analysis module could not be imported.")
-elif current_page == 'settings':
+        st.error("Machine learning module could not be imported.")
+elif st.session_state.current_page == 'forecasting':
     try:
-        from main_pages import settings as st
-        st.show()
+        from main_pages import forecasting as fc
+        fc.show()
     except ImportError:
-        st.error("Data analysis module could not be imported.")
-elif current_page == 'documentation':
+        st.error("Forecasting module could not be imported.")
+elif st.session_state.current_page == 'settings':
+    try:
+        from main_pages import settings as stg
+        stg.show()
+    except ImportError:
+        st.error("Settings module could not be imported.")
+elif st.session_state.current_page == 'documentation':
     try:
         from main_pages import documentation as doc
-    except ImportError:
-        st.error("Data analysis module could not be imported.")
         doc.show()
+    except ImportError:
+        st.error("Documentation module could not be imported.")
+else:
+    st.error("Page not found.")
