@@ -10,9 +10,22 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 
 # main codes
 # executing main function
-if __name__ == "__main__":
+def show():
     # setting the page configuration
-    st.set_page_config(page_title="Food Prices In India",page_icon="AVI",layout="wide")
+    #st.set_page_config(page_title="E-Commerce Sales",page_icon="AVI",layout="wide")
+
+    if st.button("Back to Data Analysis Page"):
+        st.session_state.current_page = 'data_analysis'
+        
+    if st.session_state.current_page == 'data_analysis':
+        try:
+            from main_pages import data_analytics
+            data_analytics.show()
+        except ImportError:
+            st .error("Data analysis module could not be imported.")
+
+    # setting the page configuration
+    #st.set_page_config(page_title="Food Prices In India",page_icon="AVI",layout="wide")
 
     # custom bachground color
     st.markdown(
