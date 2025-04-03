@@ -19,8 +19,10 @@ from lightgbm import LGBMClassifier, LGBMRegressor
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def show():
+    if st.button("Back to Main Page"):
+        st.session_state.current_page = 'home'
+
     st.title("🤖 Machine Learning Playground")
     st.markdown("Upload your dataset and explore machine learning models")
 
@@ -178,4 +180,33 @@ def show():
             st.error(f"An error occurred: {e}")
 
 
+# Page routing
+if st.session_state.current_page == 'home':
+    try:
+        import App
+        App.show_home()
+    except ImportError:
+        st .error("Data analysis module could not be imported.")
+    
+elif st.session_state.current_page == 'data_analysis':
+    try:
+        show()
+    except ImportError:
+        st .error("Data analysis module could not be imported.")
 
+elif st.session_state.current_page == 'e_commerce':
+    try:
+        from data_analytics_templates import e_commerce
+        e_commerce.show()
+    except ImportError:
+        st.error("e_commerce module could not be imported.")
+
+elif st.session_state.current_page == 'food_prices':
+    try:
+        from data_analytics_templates import food_prices
+        food_prices.show()
+    except ImportError:
+        st.error("food_prices module could not be imported.")
+
+else:
+    st.error("Page not found.")
