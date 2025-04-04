@@ -17,58 +17,45 @@ def show():
     # st.set_page_config(page_title="Dataset Categories", layout="wide")
     st.title("📊 Dataset Categories")
 
-    # # Define categories of datasets with images
-    # categories = {
-    #     "Category 1": {
-    #         "name": "E-Commerce Sales Data Analysis",
-    #         "image": "img/e_commerce.jpg"
-    #     },
-    #     "Category 2": {
-    #         "name": "Food Price Analysis",
-    #         "image": "img/india_food_prices.jpg"
-    #     },
-    #     "Category 3": {
-    #         "name": "Other Datasets",
-    #         "image": "img/image1.jpg"
-    #     },
-    #     "Category 4": {
-    #         "name": "Dataset 4",
-    #         "image": "img/linked_bg.png"
-    #     },
-    # }
+    # Define categories of datasets with images
+    categories = {
+        "Category 1": {
+            "name": "E-Commerce Sales Data Analysis",
+            "image": "img/e_commerce.jpg"
+        },
+        "Category 2": {
+            "name": "Food Price Analysis",
+            "image": "img/india_food_prices.jpg"
+        },
+        "Category 3": {
+            "name": "Other Datasets",
+            "image": "img/image1.jpg"
+        },
+        "Category 4": {
+            "name": "Dataset 4",
+            "image": "img/linked_bg.png"
+        },
+    }
 
-    # # Create a grid layout for the categories
-    # cols = st.columns(2)
+    # Create a grid layout for the categories
+    cols = st.columns(2)
 
-    # for i, (category, details) in enumerate(categories.items()):
-    #     with cols[i % 2]:  # Alternate between columns
-    #         # Check if the image URL is valid (optional)
-    #         if details["image"]:
-    #             st.image(details["image"], caption=category, use_container_width=True)
-    #         else:
-    #             st.warning(f"No image available for {category}.")
+    for i, (category, details) in enumerate(categories.items()):
+        with cols[i % 2]:  # Alternate between columns
+            # Check if the image URL is valid (optional)
+            if details["image"]:
+                st.image(details["image"], caption=category, use_container_width=True)
+            else:
+                st.warning(f"No image available for {category}.")
             
-    #         if st.button(f"Explore {details['name']}"):
-    #             # Set the current page in session state
-    #             st.session_state.current_page = {details["name"]}
+            if st.button(f"Explore {details['name']}"):
+                # Set the current page in session state
+                st.session_state.current_page = {details["name"]}
                   
 
 #if __name__ == "__main__":
 #    data_analytics()
-cols1,cols2 = st.columns(2)
 
-with cols1: 
-    st.image("img/e_commerce.jpg", caption=category, use_container_width=True)
-    if st.button(f"Explore E-Commerce Sales Data Analysis"):
-    #             # Set the current page in session state
-                st.session_state.current_page = "E-Commerce Sales Data Analysis"
-
-
-with cols2: 
-    st.image("img/image1.jpg", caption=category, use_container_width=True)
-    if st.button(f"Explore Food Price Analysis"):
-    #             # Set the current page in session state
-                st.session_state.current_page = "Food Price Analysis"
 
 
 
