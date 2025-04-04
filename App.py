@@ -140,8 +140,7 @@ elif st.session_state.current_page == 'documentation':
         doc.show()
     except ImportError:
         st.error("Documentation module could not be imported.")
-
-elif st.session_state.current_page == 'E-Commerce Sales Data Analysis':
+elif st.session_state.current_page == 'e_commerce':
     try:
         from data_analytics_templates import e_commerce
         e_commerce.show()
