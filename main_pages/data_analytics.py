@@ -21,19 +21,19 @@ def show():
     categories = {
         "Category 1": {
             "name": "E-Commerce Sales Data Analysis",
-            "image": "img\e_commerce.jpg"
+            "image": "img/e_commerce.jpg"
         },
         "Category 2": {
             "name": "Food Price Analysis",
-            "image": "img\india_food_prices.jpg"
+            "image": "img/india_food_prices.jpg"
         },
         "Category 3": {
             "name": "Other Datasets",
-            "image": "img\image1.webp"
+            "image": "img/image1.webp"
         },
         "Category 4": {
             "name": "Dataset 4",
-            "image": "img\linked_bg.png"
+            "image": "img/linked_bg.png"
         },
     }
 
