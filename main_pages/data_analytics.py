@@ -21,23 +21,19 @@ def show():
     categories = {
         "Category 1": {
             "name": "E-Commerce Sales Data Analysis",
-            "image": "img\e_commerce.jpg",
-            "path": "e_commerce"
+            "image": "img\e_commerce.jpg"
         },
         "Category 2": {
             "name": "Food Price Analysis",
-            "image": "img\india_food_prices.jpg",
-            "path": "food_prices"
+            "image": "img\india_food_prices.jpg"
         },
         "Category 3": {
             "name": "Other Datasets",
-            "image": "https://www.bing.com/ck/a?!&&p=66550ab90be1d214119ba8e4d72da032c56c04e6e383543d7533cbee8aee9424JmltdHM9MTc0MzYzODQwMA&ptn=3&ver=2&hsh=4&fclid=385b4511-ca1f-6178-0ffd-5795cbad60aa&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZXMmaWQ9RUVDRkJCN0Y0MzIwOTIxNTcxQTUzOURCNDU5Q0FDRkU5RDFFQzI0MiZGT1JNPUlRRlJCQQ&ntb=1",
-            "path": ""
+            "image": "img\image1.webp"
         },
         "Category 4": {
             "name": "Dataset 4",
-            "image": "https://www.bing.com/ck/a?!&&p=66550ab90be1d214119ba8e4d72da032c56c04e6e383543d7533cbee8aee9424JmltdHM9MTc0MzYzODQwMA&ptn=3&ver=2&hsh=4&fclid=385b4511-ca1f-6178-0ffd-5795cbad60aa&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZXMmaWQ9RUVDRkJCN0Y0MzIwOTIxNTcxQTUzOURCNDU5Q0FDRkU5RDFFQzI0MiZGT1JNPUlRRlJCQQ&ntb=1",
-            "path": ""
+            "image": "img\linked_bg.png"
         },
     }
 
@@ -54,7 +50,7 @@ def show():
             
             if st.button(f"Explore {details['name']}"):
                 # Set the current page in session state
-                st.session_state.current_page = details['path']
+                st.session_state.current_page = details["name"]
                   
 
 #if __name__ == "__main__":
@@ -73,13 +69,13 @@ elif st.session_state.current_page == 'data_analysis':
         show()
     except ImportError:
         st .error("Data analysis module could not be imported.")
-elif st.session_state.current_page == 'e_commerce':
+elif st.session_state.current_page == 'E-Commerce Sales Data Analysis':
     try:
         from data_analytics_templates import e_commerce
         e_commerce.show()
     except ImportError:
         st.error("e_commerce module could not be imported.")
-elif st.session_state.current_page == 'food_prices':
+elif st.session_state.current_page == 'Food Price Analysis':
     try:
         from data_analytics_templates import food_prices
         food_prices.show()
