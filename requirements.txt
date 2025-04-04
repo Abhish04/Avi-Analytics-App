@@ -1,0 +1,13 @@
+streamlit
+matplotlib
+seaborn
+plotly.express
+openpyxl
+numPy
+pandas
+sklearn
+xgboost
+lightgbm
+img
+main_pages
+data_analytics_templates
