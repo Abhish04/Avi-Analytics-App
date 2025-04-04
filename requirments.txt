@@ -10,3 +10,5 @@ lightgbm
 img
 main_pages
 data_analytics_templates
+main_pages/machine_learning.py
+main_pages/data_analytics.py
