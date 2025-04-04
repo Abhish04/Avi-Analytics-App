@@ -44,7 +44,7 @@ def show():
         with cols[i % 2]:  # Alternate between columns
             # Check if the image URL is valid (optional)
             if details["image"]:
-                st.image(details["image"],category=categories, use_container_width=True)
+                st.image(details["image"], caption=category, use_container_width=True)
             else:
                 st.warning(f"No image available for {category}.")
             
