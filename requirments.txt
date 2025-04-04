@@ -7,3 +7,6 @@ Pandas
 sklearn
 xgboost
 lightgbm
+img
+main_pages
+data_analytics_templates
