@@ -16,7 +16,7 @@ def show():
 
     if st.button("Back to Data Analysis Page"):
         st.session_state.current_page = 'data_analysis'
-
+        
 
     # setting the page configuration
     #st.set_page_config(page_title="Food Prices In India",page_icon="AVI",layout="wide")
