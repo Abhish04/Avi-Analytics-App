@@ -15,6 +15,7 @@ def show():
 
     if st.button("Back to Data Analysis Page"):
         st.session_state.current_page = 'data_analysis'
+        
 
     # custom bachground color
     st.markdown(
