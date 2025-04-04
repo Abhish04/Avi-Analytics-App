@@ -72,7 +72,7 @@ elif st.session_state.current_page == 'data_analysis':
         show()
     except ImportError:
         st .error("Data analysis module could not be imported.")
-elif st.session_state.current_page == 'E-Commerce Sales Data Analysis':
+elif st.session_state.current_page == 'e_commerce':
     try:
         from data_analytics_templates import e_commerce
         e_commerce.show()
@@ -85,4 +85,4 @@ elif st.session_state.current_page == 'Food Price Analysis':
     except ImportError:
         st.error("food_prices module could not be imported.")
 else:
-    st.error("Page not found.")
+    st.error("Page not found. e_commerce")
