@@ -1,10 +1,5 @@
 import streamlit as st
 
-#import sys
-#import os
-
-#sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "main_pages")))
-
 # Initialize session state for page navigation
 if 'current_page' not in st.session_state:
     st.session_state.current_page = 'home'
@@ -107,50 +102,51 @@ def show_home():
         if st.button("Go to Documentation", key="documentation"):
             navigate_to("documentation")
 
-# Page routing
-if st.session_state.current_page == 'home':
-    show_home()
-elif st.session_state.current_page == 'data_analysis':
-    try:
-        from main_pages import data_analytics
-        data_analytics.show()
-    except ImportError:
-        st .error("Data analysis module could not be imported.")
-elif st.session_state.current_page == 'machine_learning':
-    try:
-        from main_pages import machine_learning
-        machine_learning.show()
-    except ImportError:
-        st.error("Machine learning module could not be imported.")
-elif st.session_state.current_page == 'forecasting':
-    try:
-        from main_pages import forecasting as fc
-        fc.show()
-    except ImportError:
-        st.error("Forecasting module could not be imported.")
-elif st.session_state.current_page == 'settings':
-    try:
-        from main_pages import settings as stg
-        stg.show()
-    except ImportError:
-        st.error("Settings module could not be imported.")
-elif st.session_state.current_page == 'documentation':
-    try:
-        from main_pages import documentation as doc
-        doc.show()
-    except ImportError:
-        st.error("Documentation module could not be imported.")
-elif st.session_state.current_page == 'e_commerce':
-    try:
-        from data_analytics_templates import e_commerce
-        e_commerce.show()
-    except ImportError:
-        st.error("e_commerce module could not be imported.")
-elif st.session_state.current_page == 'Food Price Analysis':
-    try:
-        from data_analytics_templates import food_prices
-        food_prices.show()
-    except ImportError:
-        st.error("food_prices module could not be imported.")
-else:
-    st.error("Page not found.")
+if __name__ == "__main__":
+    # Page routing
+    if st.session_state.current_page == 'home':
+        show_home()
+    elif st.session_state.current_page == 'data_analysis':
+        try:
+            from main_pages import data_analytics
+            data_analytics.show()
+        except ImportError:
+            st .error("Data analysis module could not be imported.")
+    elif st.session_state.current_page == 'machine_learning':
+        try:
+            from main_pages import machine_learning
+            machine_learning.show()
+        except ImportError:
+            st.error("Machine learning module could not be imported.")
+    elif st.session_state.current_page == 'forecasting':
+        try:
+            from main_pages import forecasting as fc
+            fc.show()
+        except ImportError:
+            st.error("Forecasting module could not be imported.")
+    elif st.session_state.current_page == 'settings':
+        try:
+            from main_pages import settings as stg
+            stg.show()
+        except ImportError:
+            st.error("Settings module could not be imported.")
+    elif st.session_state.current_page == 'documentation':
+        try:
+            from main_pages import documentation as doc
+            doc.show()
+        except ImportError:
+            st.error("Documentation module could not be imported.")
+    elif st.session_state.current_page == 'E-Commerce Sales Analysis':
+        try:
+            from data_analytics_templates import e_commerce
+            e_commerce.show()
+        except ImportError:
+            st.error("e_commerce module could not be imported.")
+    elif st.session_state.current_page == 'Food Price Analysis':
+        try:
+            from data_analytics_templates import food_prices
+            food_prices.show()
+        except ImportError:
+            st.error("food_prices module could not be imported.")
+    else:
+        st.error("Page not found.")
