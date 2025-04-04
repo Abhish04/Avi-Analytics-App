@@ -181,32 +181,16 @@ def show():
 
 
 # Page routing
-if st.session_state.current_page == 'home':
+if st.session_state.current_page == 'machine_learning':
+    try:
+        show()
+    except ImportError:
+        st .error("Machine Learning module could not be imported.")
+elif st.session_state.current_page == 'home':
     try:
         import App
         App.show_home()
     except ImportError:
         st .error("Data analysis module could not be imported.")
-    
-elif st.session_state.current_page == 'data_analysis':
-    try:
-        show()
-    except ImportError:
-        st .error("Data analysis module could not be imported.")
-
-elif st.session_state.current_page == 'e_commerce':
-    try:
-        from data_analytics_templates import e_commerce
-        e_commerce.show()
-    except ImportError:
-        st.error("e_commerce module could not be imported.")
-
-elif st.session_state.current_page == 'food_prices':
-    try:
-        from data_analytics_templates import food_prices
-        food_prices.show()
-    except ImportError:
-        st.error("food_prices module could not be imported.")
-
 else:
     st.error("Page not found.")
