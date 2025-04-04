@@ -20,7 +20,7 @@ def show():
     # Define categories of datasets with images
     categories = {
         "Category 1": {
-            "name": "E-Commerce Sales Data Analysis",
+            "name": "e_commerce",
             "image": "img/e_commerce.jpg"
         },
         "Category 2": {
