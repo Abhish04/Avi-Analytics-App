@@ -20,21 +20,21 @@ def show():
     # Define categories of datasets with images
     categories = {
         "Category 1": {
-            "name": "e_commerce",
-            "image": "img/e_commerce.jpg"
+            "name": "E-Commerce Sales Analysis",
+            "image": "img\e_commerce.jpg"
         },
         "Category 2": {
             "name": "Food Price Analysis",
-            "image": "img/india_food_prices.jpg"
+            "image": "img\india_food_prices.jpg"
         },
         "Category 3": {
             "name": "Other Datasets",
-            "image": "img/image1.jpg"
+            "image": "img\image1.jpg"
         },
         "Category 4": {
             "name": "Dataset 4",
-            "image": "img/linked_bg.png"
-        },
+            "image": "img\linked_bg.png"
+        }
     }
 
     # Create a grid layout for the categories
@@ -44,15 +44,12 @@ def show():
         with cols[i % 2]:  # Alternate between columns
             # Check if the image URL is valid (optional)
             if details["image"]:
-                st.image(details["image"], caption=category, use_container_width=True)
+                st.image(details["image"], use_container_width=True)
             else:
                 st.warning(f"No image available for {category}.")
             
             if st.button(f"Explore {details['name']}"):
                 # Set the current page in session state
-                st.session_state.current_page = {details['name']}
-                  
-
-#if __name__ == "__main__":
-#    data_analytics()
-
+                st.session_state.current_page = details["name"]
+            
+            st.write("------------------------------------------------------------------------------------------")
