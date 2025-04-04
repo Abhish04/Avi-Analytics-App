@@ -12,3 +12,5 @@ main_pages
 data_analytics_templates
 main_pages/machine_learning.py
 main_pages/data_analytics.py
+data_analytics_templates/e_commerce.py
+data_analytics_templates/food_prices.py
