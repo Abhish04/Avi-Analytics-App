@@ -1,11 +1,10 @@
 streamlit
 matplotlib
 seaborn
-plotly.express
+plotly
 openpyxl
-numPy
+numpy
 pandas
-sklearn
+scikit-learn
 xgboost
 lightgbm
-
