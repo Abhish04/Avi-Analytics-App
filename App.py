@@ -153,4 +153,4 @@ elif st.session_state.current_page == 'Food Price Analysis':
     except ImportError:
         st.error("food_prices module could not be imported.")
 else:
-    st.error("Page not found.aaaaasaaaaaa")
+    st.error("Page not found.")
