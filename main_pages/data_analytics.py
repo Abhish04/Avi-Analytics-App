@@ -50,7 +50,7 @@ def show():
             
             if st.button(f"Explore {details['name']}"):
                 # Set the current page in session state
-                st.session_state.current_page = {details["name"]}
+                st.session_state.current_page = {details['name']}
                   
 
 #if __name__ == "__main__":
