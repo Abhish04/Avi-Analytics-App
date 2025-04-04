@@ -140,5 +140,18 @@ elif st.session_state.current_page == 'documentation':
         doc.show()
     except ImportError:
         st.error("Documentation module could not be imported.")
+
+elif st.session_state.current_page == 'E-Commerce Sales Data Analysis':
+    try:
+        from data_analytics_templates import e_commerce
+        e_commerce.show()
+    except ImportError:
+        st.error("e_commerce module could not be imported.")
+elif st.session_state.current_page == 'Food Price Analysis':
+    try:
+        from data_analytics_templates import food_prices
+        food_prices.show()
+    except ImportError:
+        st.error("food_prices module could not be imported.")
 else:
     st.error("Page not found.")
