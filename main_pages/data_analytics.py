@@ -29,7 +29,7 @@ def show():
         },
         "Category 3": {
             "name": "Other Datasets",
-            "image": "img/image1.webp"
+            "image": "img/image1.png"
         },
         "Category 4": {
             "name": "Dataset 4",
