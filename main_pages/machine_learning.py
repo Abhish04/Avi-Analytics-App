@@ -188,4 +188,4 @@ def show():
             st.error(f"An error occurred: {e}")
 
     else:
-        st.header("PLEASE UPLOAD YOUR DATA THROUGH SIDEBAR FOR ANALYSIS")
+        st.header("PLEASE UPLOAD YOUR DATASET TO START.")
