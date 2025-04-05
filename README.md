@@ -1,7 +1,3 @@
-Based on the provided information, here's a structured documentation page for the **Avi Analytics App**:
-
----
-
 # Avi Analytics App Documentation
 
 ## Introduction
