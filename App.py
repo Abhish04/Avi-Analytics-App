@@ -72,12 +72,12 @@ def show_home():
 
     with col3:
         st.markdown('<div class="category-block">' +
-                    '<div class="category-title">📈 Forecasting</div>' +
-                    '<div class="category-description">Time series analysis and prediction tools</div>' +
+                    '<div class="category-title">📈 Dataset Manager</div>' +
+                    '<div class="category-description">View and Edit Datasets</div>' +
                     '</div>', 
                     unsafe_allow_html=True)
-        if st.button("Go to Forecasting", key="forecasting"):
-            navigate_to("forecasting")
+        if st.button("Go to Dataset Manager", key="edit_dataset"):
+            navigate_to("edit_dataset")
 
     # Additional Tools
     st.markdown("---")
@@ -118,12 +118,12 @@ if __name__ == "__main__":
             machine_learning.show()
         except ImportError:
             st.error("Machine learning module could not be imported.")
-    elif st.session_state.current_page == 'forecasting':
+    elif st.session_state.current_page == 'edit_dataset':
         try:
-            from main_pages import forecasting as fc
-            fc.show()
+            from main_pages import edit_dataset as ed
+            ed.show()
         except ImportError:
-            st.error("Forecasting module could not be imported.")
+            st.error("Edit dataset module could not be imported.")
     elif st.session_state.current_page == 'settings':
         try:
             from main_pages import settings as stg
