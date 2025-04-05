@@ -85,7 +85,7 @@ Contributions are welcome! If you'd like to contribute to the development of the
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE.txt).
 
 ## Contact
 
