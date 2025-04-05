@@ -9,7 +9,7 @@ def show():
     st.title("📊 Dataset Manager")
     
     # upload file
-    uploaded_file = st.sidebar.file_uploader("CHOOSE YOUR FILE:", type=["csv","xlsx"])
+    uploaded_file = st.file_uploader("CHOOSE YOUR FILE:", type=["csv","xlsx"])
 
 
     if uploaded_file is not None:
