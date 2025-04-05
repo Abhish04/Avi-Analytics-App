@@ -72,6 +72,8 @@ def show():
         except Exception as e:
             st.error(f"Error reading file: {e}")
 
+    else:
+        st.header("PLEASE UPLOAD YOUR DATASET TO START.")
 # if __name__ == "__main__":
 #     show()
 
