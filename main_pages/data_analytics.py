@@ -25,15 +25,15 @@ def show():
         "Category 2": {
             "name": "Food Price Analysis",
             "image": "img/india_food_prices.jpg"
-        },
-        "Category 3": {
-            "name": "Other Datasets",
-            "image": "img/image1.jpg"
-        },
-        "Category 4": {
-            "name": "Dataset 4",
-            "image": "img/linked_bg.png"
         }
+        # "Category 3": {
+        #     "name": "Other Datasets",
+        #     "image": "img/image1.jpg"
+        # },
+        # "Category 4": {
+        #     "name": "Dataset 4",
+        #     "image": "img/linked_bg.png"
+        # }
     }
 
     # Create a grid layout for the categories
