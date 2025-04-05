@@ -57,200 +57,203 @@ def show():
 
         st.write("Shape and size of Dataframe:", df.shape)
 
-        st.header("DATA EXPLORATION")
+        try:
+
+            st.header("DATA EXPLORATION")
 
 
-        explo1, explo2, explo3 = st.columns(spec=[1,1,1],gap="small")
-        
-        with explo1:
-            # Examine data types
-            st.write("Data Types:\n", df.dtypes)
+            explo1, explo2, explo3 = st.columns(spec=[1,1,1],gap="small")
+            
+            with explo1:
+                # Examine data types
+                st.write("Data Types:\n", df.dtypes)
 
-        with explo2:
-            # Check for missing values
-            missing_values = df.isnull().sum()
-            missing_percentage = (missing_values / len(df)) * 100
-            st.write("\nMissing Values:\n", missing_values)
-        
-        with explo3:
-            st.write("\nMissing Value Percentage:\n", missing_percentage)
+            with explo2:
+                # Check for missing values
+                missing_values = df.isnull().sum()
+                missing_percentage = (missing_values / len(df)) * 100
+                st.write("\nMissing Values:\n", missing_values)
+            
+            with explo3:
+                st.write("\nMissing Value Percentage:\n", missing_percentage)
 
-        st.write("--")
-        
-        explo4, explo5 = st.columns(spec=[2,1],gap="small")
-        # Descriptive statistics
-        
-        with explo4:
-            st.write("\nDescriptive Statistics:\n", df.describe())
-        
-        with explo5:
-            st.write("\nDescriptive Statistics for Quantity and UnitPrice:\n", df[['Quantity', 'UnitPrice']].describe())
+            st.write("--")
+            
+            explo4, explo5 = st.columns(spec=[2,1],gap="small")
+            # Descriptive statistics
+            
+            with explo4:
+                st.write("\nDescriptive Statistics:\n", df.describe())
+            
+            with explo5:
+                st.write("\nDescriptive Statistics for Quantity and UnitPrice:\n", df[['Quantity', 'UnitPrice']].describe())
 
-        st.write("--")
-        
-        # Dimensions
-        st.write("\nDataFrame Dimensions:", df.shape)
+            st.write("--")
+            
+            # Dimensions
+            st.write("\nDataFrame Dimensions:", df.shape)
 
-        # Unique values for categorical columns
-        st.write("\nUnique Countries:\n", df['Country'].unique())
+            # Unique values for categorical columns
+            st.write("\nUnique Countries:\n", df['Country'].unique())
 
-        st.header("DATA CLEANING")
-        st.write("Cleaning the data by handling missing values, removing duplicates, and addressing outliers in 'Quantity' and 'UnitPrice'.")
+            st.header("DATA CLEANING")
+            st.write("Cleaning the data by handling missing values, removing duplicates, and addressing outliers in 'Quantity' and 'UnitPrice'.")
 
-        # Remove rows with missing 'Description'
-        df.dropna(subset=['Description'], inplace=True)
+            # Remove rows with missing 'Description'
+            df.dropna(subset=['Description'], inplace=True)
 
-        # Remove rows with missing 'CustomerID' (chosen strategy: remove rows)
-        df.dropna(subset=['CustomerID'], inplace=True)
+            # Remove rows with missing 'CustomerID' (chosen strategy: remove rows)
+            df.dropna(subset=['CustomerID'], inplace=True)
 
-        # Remove duplicate rows
-        df.drop_duplicates(inplace=True)
+            # Remove duplicate rows
+            df.drop_duplicates(inplace=True)
 
 
-        cle1, cle2 = st.columns(spec=[1,1],gap="small")
+            cle1, cle2 = st.columns(spec=[1,1],gap="small")
 
-        with cle1:
-            # Investigate and handle outliers in 'Quantity'
-            st.write(df['Quantity'].describe())
-            # Remove negative quantity values.
-            df = df[df['Quantity'] > 0]
-            # Cap the 'Quantity' at the 99th percentile.
-            quantity_99th = df['Quantity'].quantile(0.99)
-            df['Quantity'] = df['Quantity'].clip(upper=quantity_99th)
+            with cle1:
+                # Investigate and handle outliers in 'Quantity'
+                st.write(df['Quantity'].describe())
+                # Remove negative quantity values.
+                df = df[df['Quantity'] > 0]
+                # Cap the 'Quantity' at the 99th percentile.
+                quantity_99th = df['Quantity'].quantile(0.99)
+                df['Quantity'] = df['Quantity'].clip(upper=quantity_99th)
 
-        with cle2:
-            # Investigate and handle outliers in 'UnitPrice'
-            st.write(df['UnitPrice'].describe())
-            # Remove values where 'UnitPrice' is less than 0.
-            df = df[df['UnitPrice'] >= 0]
-            # Cap the 'UnitPrice' at the 99th percentile
-            unitprice_99th = df['UnitPrice'].quantile(0.99)
-            df['UnitPrice'] = df['UnitPrice'].clip(upper=unitprice_99th)
+            with cle2:
+                # Investigate and handle outliers in 'UnitPrice'
+                st.write(df['UnitPrice'].describe())
+                # Remove values where 'UnitPrice' is less than 0.
+                df = df[df['UnitPrice'] >= 0]
+                # Cap the 'UnitPrice' at the 99th percentile
+                unitprice_99th = df['UnitPrice'].quantile(0.99)
+                df['UnitPrice'] = df['UnitPrice'].clip(upper=unitprice_99th)
 
-        
-        st.write("--")
+            
+            st.write("--")
 
-        st.subheader("Data After Cleaning")
-        st.write(df.head())
+            st.subheader("Data After Cleaning")
+            st.write(df.head())
 
-        st.header("DATA WRANGLING")
-        st.write("Create new features as instructed: 'TotalSales', 'InvoiceMonth', 'InvoiceYear', and 'CustomerSegment'")
-        
-        # Calculate total sales value
-        df['TotalSales'] = df['Quantity'] * df['UnitPrice']
+            st.header("DATA WRANGLING")
+            st.write("Create new features as instructed: 'TotalSales', 'InvoiceMonth', 'InvoiceYear', and 'CustomerSegment'")
+            
+            # Calculate total sales value
+            df['TotalSales'] = df['Quantity'] * df['UnitPrice']
 
-        # Extract month and year from InvoiceDate
-        df['InvoiceMonth'] = df['InvoiceDate'].dt.month
-        df['InvoiceYear'] = df['InvoiceDate'].dt.year
+            # Extract month and year from InvoiceDate
+            df['InvoiceMonth'] = df['InvoiceDate'].dt.month
+            df['InvoiceYear'] = df['InvoiceDate'].dt.year
 
-        # Customer segmentation (example using quantiles)
-        # You can adjust the quantiles or use other methods for segmentation.
-        sales_quantiles = df['TotalSales'].quantile([0.33, 0.66])
-        def customer_segment(sales):
-            if sales <= sales_quantiles[0.33]:
-                return 'Low'
-            elif sales <= sales_quantiles[0.66]:
-                return 'Medium'
-            else:
-                return 'High'
-        df['CustomerSegment'] = df['TotalSales'].apply(customer_segment)
+            # Customer segmentation (example using quantiles)
+            # You can adjust the quantiles or use other methods for segmentation.
+            sales_quantiles = df['TotalSales'].quantile([0.33, 0.66])
+            def customer_segment(sales):
+                if sales <= sales_quantiles[0.33]:
+                    return 'Low'
+                elif sales <= sales_quantiles[0.66]:
+                    return 'Medium'
+                else:
+                    return 'High'
+            df['CustomerSegment'] = df['TotalSales'].apply(customer_segment)
 
-        st.write(df.head())
+            st.write(df.head())
 
-        st.header("DATA ANALYSIS")
-        st.write("Calculating the total revenue, average order value, analyze sales trends, identify top-selling products and countries, and analyze customer purchase patterns.")
+            st.header("DATA ANALYSIS")
+            st.write("Calculating the total revenue, average order value, analyze sales trends, identify top-selling products and countries, and analyze customer purchase patterns.")
 
-        # 1. Total revenue
-        total_revenue = df['TotalSales'].sum().round(2)
-        st.write(f"Total Revenue: {total_revenue}")
+            # 1. Total revenue
+            total_revenue = df['TotalSales'].sum().round(2)
+            st.write(f"Total Revenue: {total_revenue}")
 
-        # 2. Average Order Value (AOV)
-        aov = df['TotalSales'].mean().round(2)
-        st.write(f"Average Order Value: {aov}")
+            # 2. Average Order Value (AOV)
+            aov = df['TotalSales'].mean().round(2)
+            st.write(f"Average Order Value: {aov}")
 
-        st.write("--")
-        
-        col1, col2, col3 = st.columns(spec=[1,1,1],gap="small")
+            st.write("--")
+            
+            col1, col2, col3 = st.columns(spec=[1,1,1],gap="small")
 
-        with col1:
-            # 3. Sales trends over time (monthly)
-            monthly_sales = df.groupby('InvoiceMonth')['TotalSales'].sum()
-            st.write("\nMonthly Sales:\n", monthly_sales)
+            with col1:
+                # 3. Sales trends over time (monthly)
+                monthly_sales = df.groupby('InvoiceMonth')['TotalSales'].sum()
+                st.write("\nMonthly Sales:\n", monthly_sales)
 
-        with col2:
-            # 4. Top 5 best-selling products
-            top_products = df.groupby('Description')['Quantity'].sum().sort_values(ascending=False).head(5)
-            st.write("\nTop 5 Best-Selling Products:\n", top_products)
+            with col2:
+                # 4. Top 5 best-selling products
+                top_products = df.groupby('Description')['Quantity'].sum().sort_values(ascending=False).head(5)
+                st.write("\nTop 5 Best-Selling Products:\n", top_products)
 
-        with col3:
-            # 5. Top 5 countries by revenue
-            top_countries = df.groupby('Country')['TotalSales'].sum().sort_values(ascending=False).head(5)
-            st.write("\nTop 5 Countries by Revenue:\n", top_countries)
+            with col3:
+                # 5. Top 5 countries by revenue
+                top_countries = df.groupby('Country')['TotalSales'].sum().sort_values(ascending=False).head(5)
+                st.write("\nTop 5 Countries by Revenue:\n", top_countries)
 
-        
-        st.write("--")
-        col4, col5, col6 = st.columns(spec=[1,1,1],gap="small")
+            
+            st.write("--")
+            col4, col5, col6 = st.columns(spec=[1,1,1],gap="small")
 
-        with col4:
-            # 6. Customer purchase patterns
-            # Frequency of purchases
-            customer_frequency = df.groupby('CustomerID')['InvoiceNo'].count()
-            st.write("\nCustomer Purchase Frequency:\n", customer_frequency.head())
+            with col4:
+                # 6. Customer purchase patterns
+                # Frequency of purchases
+                customer_frequency = df.groupby('CustomerID')['InvoiceNo'].count()
+                st.write("\nCustomer Purchase Frequency:\n", customer_frequency.head())
 
-        with col5:
-            # Monetary value of transactions
-            customer_monetary_value = df.groupby('CustomerID')['TotalSales'].sum()
-            st.write("\nCustomer Monetary Value:\n", customer_monetary_value.head())
+            with col5:
+                # Monetary value of transactions
+                customer_monetary_value = df.groupby('CustomerID')['TotalSales'].sum()
+                st.write("\nCustomer Monetary Value:\n", customer_monetary_value.head())
 
-        with col6:
-            # Average number of items per order
-            customer_avg_items = df.groupby('CustomerID')['Quantity'].mean()
-            st.write("\nCustomer Average Items per Order:\n", customer_avg_items.head())
+            with col6:
+                # Average number of items per order
+                customer_avg_items = df.groupby('CustomerID')['Quantity'].mean()
+                st.write("\nCustomer Average Items per Order:\n", customer_avg_items.head())
 
-        
-        st.write("--")
-        # Analyze purchase patterns by customer segment
-        segment_analysis = df.groupby('CustomerSegment')['TotalSales'].agg(['mean', 'sum', 'count'])
-        st.write("\nCustomer Segment Analysis:\n", segment_analysis)
+            
+            st.write("--")
+            # Analyze purchase patterns by customer segment
+            segment_analysis = df.groupby('CustomerSegment')['TotalSales'].agg(['mean', 'sum', 'count'])
+            st.write("\nCustomer Segment Analysis:\n", segment_analysis)
 
-        st.header("DATA VISUALISATION")
-        st.write("Visualizing the data to gain insights and understand the trends and patterns in the data")
+            st.header("DATA VISUALISATION")
+            st.write("Visualizing the data to gain insights and understand the trends and patterns in the data")
 
-        # 1. Sales Trends (Monthly)
-        st.subheader("Monthly Sales Trend")
-        monthly_sales = df.groupby('InvoiceMonth')['TotalSales'].sum().reset_index()
-        fig_monthly_sales = px.line(monthly_sales, x='InvoiceMonth', y='TotalSales', title='Monthly Sales Trend', labels={'InvoiceMonth': 'Month', 'TotalSales': 'Total Sales'}, markers=True)
-        fig_monthly_sales.update_traces(line=dict(width=2.5), marker=dict(size=8))
-        fig_monthly_sales.update_layout(hovermode="x unified")
-        st.plotly_chart(fig_monthly_sales)
+            # 1. Sales Trends (Monthly)
+            st.subheader("Monthly Sales Trend")
+            monthly_sales = df.groupby('InvoiceMonth')['TotalSales'].sum().reset_index()
+            fig_monthly_sales = px.line(monthly_sales, x='InvoiceMonth', y='TotalSales', title='Monthly Sales Trend', labels={'InvoiceMonth': 'Month', 'TotalSales': 'Total Sales'}, markers=True)
+            fig_monthly_sales.update_traces(line=dict(width=2.5), marker=dict(size=8))
+            fig_monthly_sales.update_layout(hovermode="x unified")
+            st.plotly_chart(fig_monthly_sales)
 
-        # 2. Top-Selling Products
-        st.subheader("Top 10 Best-Selling Products")
-        top_products = df.groupby('Description')['Quantity'].sum().sort_values(ascending=False).head(10).reset_index()
-        fig_top_products = px.bar(top_products, x='Quantity', y='Description', orientation='h', title='Top 10 Best-Selling Products', labels={'Quantity': 'Total Quantity Sold', 'Description': 'Product Description'}, color='Quantity')
-        fig_top_products.update_layout(yaxis={'categoryorder': 'total ascending'})
-        st.plotly_chart(fig_top_products)
+            # 2. Top-Selling Products
+            st.subheader("Top 10 Best-Selling Products")
+            top_products = df.groupby('Description')['Quantity'].sum().sort_values(ascending=False).head(10).reset_index()
+            fig_top_products = px.bar(top_products, x='Quantity', y='Description', orientation='h', title='Top 10 Best-Selling Products', labels={'Quantity': 'Total Quantity Sold', 'Description': 'Product Description'}, color='Quantity')
+            fig_top_products.update_layout(yaxis={'categoryorder': 'total ascending'})
+            st.plotly_chart(fig_top_products)
 
-        # 3. Geographic Distribution of Sales
-        st.subheader("Geographic Distribution of Sales")
-        country_sales = df.groupby('Country')['TotalSales'].sum().reset_index()
-        fig_country_sales = px.choropleth(country_sales, locations='Country', locationmode='country names', color='TotalSales', hover_name='Country', title='Geographic Distribution of Sales', color_continuous_scale='Viridis', labels={'TotalSales': 'Total Sales'})
-        st.plotly_chart(fig_country_sales)
+            # 3. Geographic Distribution of Sales
+            st.subheader("Geographic Distribution of Sales")
+            country_sales = df.groupby('Country')['TotalSales'].sum().reset_index()
+            fig_country_sales = px.choropleth(country_sales, locations='Country', locationmode='country names', color='TotalSales', hover_name='Country', title='Geographic Distribution of Sales', color_continuous_scale='Viridis', labels={'TotalSales': 'Total Sales'})
+            st.plotly_chart(fig_country_sales)
 
-        # 4. Customer Segmentation
-        st.subheader("Distribution of Customers Across Segments")
-        customer_segment_counts = df['CustomerSegment'].value_counts().reset_index()
-        fig_customer_segments = px.pie(customer_segment_counts, values='count', names='CustomerSegment', title='Distribution of Customers Across Segments', color_discrete_sequence=px.colors.sequential.RdBu)
-        st.plotly_chart(fig_customer_segments)
+            # 4. Customer Segmentation
+            st.subheader("Distribution of Customers Across Segments")
+            customer_segment_counts = df['CustomerSegment'].value_counts().reset_index()
+            fig_customer_segments = px.pie(customer_segment_counts, values='count', names='CustomerSegment', title='Distribution of Customers Across Segments', color_discrete_sequence=px.colors.sequential.RdBu)
+            st.plotly_chart(fig_customer_segments)
 
-        # 5. Additional Visualization (Scatter plot)
-        st.subheader("Quantity vs. Unit Price")
-        fig_scatter = px.scatter(df, x='Quantity', y='UnitPrice', title='Quantity vs. Unit Price', labels={'Quantity': 'Quantity', 'UnitPrice': 'Unit Price'}, color='CustomerSegment', hover_data=['TotalSales', 'Description'])
-        st.plotly_chart(fig_scatter)
+            # 5. Additional Visualization (Scatter plot)
+            st.subheader("Quantity vs. Unit Price")
+            fig_scatter = px.scatter(df, x='Quantity', y='UnitPrice', title='Quantity vs. Unit Price', labels={'Quantity': 'Quantity', 'UnitPrice': 'Unit Price'}, color='CustomerSegment', hover_data=['TotalSales', 'Description'])
+            st.plotly_chart(fig_scatter)
 
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
     else:
         st.header("PLEASE UPLOAD YOUR DATA THROUGH SIDEBAR FOR ANALYSIS")
-
-
-
+        st.write("Column required: InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.")
+        st.write("Note: Column name should be same as required columns given above. Use Manage Datasets feature at Home Page to edit column name.")
