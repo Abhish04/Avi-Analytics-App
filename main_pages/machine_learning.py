@@ -30,15 +30,23 @@ def show():
     uploaded_file = st.file_uploader("Choose a CSV or Excel file", type=["csv", "xlsx"])
 
     if uploaded_file is not None:
+        
+        #read the file
         try:
             if uploaded_file.name.endswith('.csv'):
                 df = pd.read_csv(uploaded_file)
-            else:
+            elif uploaded_file.name.endswith('.xlsx'):
                 df = pd.read_excel(uploaded_file)
+            else:
+                st.error("Invalid file type, Please upload CSV or Excel file.")
+        except Exception as e:
+            st.error(f"Error reading file: {e}")
         
-            st.success("Dataset loaded successfully!")
-            st.subheader("Data Preview")
-            st.dataframe(df.head())
+        st.success("Dataset loaded successfully!")
+        st.subheader("Data Preview")
+        st.dataframe(df.head())
+
+        try:
 
             # Column selection
             cols = df.columns.tolist()
@@ -179,18 +187,5 @@ def show():
         except Exception as e:
             st.error(f"An error occurred: {e}")
 
-
-# Page routing
-if st.session_state.current_page == 'machine_learning':
-    try:
-        show()
-    except ImportError:
-        st .error("Machine Learning module could not be imported.")
-elif st.session_state.current_page == 'home':
-    try:
-        import App
-        App.show_home()
-    except ImportError:
-        st .error("Data analysis module could not be imported.")
-else:
-    st.error("Page not found.")
+    else:
+        st.header("PLEASE UPLOAD YOUR DATA THROUGH SIDEBAR FOR ANALYSIS")
