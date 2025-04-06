@@ -9,4 +9,4 @@ scikit-learn
 xgboost
 lightgbm
 pdfkit
-statsmodels.tsa.seasonal
+statsmodels
