@@ -59,6 +59,16 @@ def show():
     
     st.header("Need Help?")
     st.write("For support or feedback, visit the GitHub repository or contact the developer.")
+
+    st.title("License")
+    st.markdown("""
+    ### Custom License
+    You are free to use and share this app for personal or educational purposes only.  
+    **Commercial use, modification, or redistribution is strictly prohibited** without permission.  
+    
+    For full license text, see [LICENSE.txt](https://github.com/Abhish04/Avi-Analytics-App/blob/main/LICENSE.txt).  
+    Contact: **abhishekpratap2004@gmail.com**
+    """)
     
 # if __name__ == "__main__":
 #     show()
