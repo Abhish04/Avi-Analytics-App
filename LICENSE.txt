@@ -2,12 +2,13 @@ Custom License for Avi Analytics App
 
 Copyright (c) 2025 Abhishek Pratap
 
-Permission is hereby granted to any individual or organization to use and share this software (the "Software") for **personal or educational purposes only**, free of charge.
+Permission is hereby granted to any individual or organization to use and share this software (the "Software") for "personal or educational purposes only", free of charge.
 
-**Restrictions**:
-- The Software may **not** be sold or used for commercial purposes.
-- The Software may **not** be modified, copied (except for personal use), distributed, or published without prior written permission from the author.
-- Any public use of this Software must include clear attribution to the original author, Abhishek Pratap.
+Restrictions:
+The Software may "not" be sold or used for commercial purposes.
+The Software may "not" be modified, copied (except for personal use), distributed, or published without prior written permission from the author.
+Any public use of this Software must include clear attribution to the original author, Abhishek Pratap.
+
 
 This Software is provided "as is", without warranty of any kind, express or implied. In no event shall the author be liable for any claim, damages, or other liability arising from the use of this Software.
 
