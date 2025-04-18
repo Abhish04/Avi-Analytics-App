@@ -6,8 +6,8 @@ if 'current_page' not in st.session_state:
 
 # Set page config
 st.set_page_config(
-    page_title="My App",
-    page_icon="🚀",
+    page_title="Avi Analytics App",
+    page_icon="💠",
     layout="wide"
 )
 
@@ -43,7 +43,7 @@ def navigate_to(page):
 
 # Main page content
 def show_home():
-    st.title("Welcome to My App! 🌟")
+    st.title("Welcome to My Avi Analytics App! 🌟")
     st.markdown("""
     ### Explore different sections using the categories below
     Select a category to get started with specific functionalities.
